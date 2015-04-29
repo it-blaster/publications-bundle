@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database name="default" namespace="Fenrizbes\PublicationsBundle\Model" defaultIdMethod="native">
+
+    <table name="publication_type">
+        <column name="key" type="varchar" size="255" required="true" primaryKey="true" />
+        <column name="title" type="varchar" size="255" required="true" primaryString="true" />
+    </table>
+
+    <table name="publication">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+        <column name="publication_type_key" type="varchar" size="255" required="true" />
+        <column name="title" type="varchar" size="255" required="true" primaryString="true" />
+        <column name="content" type="clob" required="true" />
+        <column name="announcement" type="longvarchar" required="false" />
+        <column name="is_published" type="boolean" required="true" default="false" />
+
+        <foreign-key foreignTable="publication_type" onDelete="none" onUpdate="cascade">
+            <reference local="publication_type_key" foreign="key" />
+        </foreign-key>
+
+        <behavior name="sluggable">
+            <parameter name="permanent" value="true" />
+        </behavior>
+
+        <behavior name="croppable" />
+
+        <behavior name="timestampable" />
+    </table>
+
+</database>

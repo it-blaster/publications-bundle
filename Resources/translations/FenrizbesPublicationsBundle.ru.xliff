@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="">
+        <body>
+
+            <trans-unit id="remove">
+                <source>remove</source>
+                <target>удалить</target>
+            </trans-unit>
+
+            <trans-unit id="fp.label.admin.actions">
+                <source>fp.label.admin.actions</source>
+                <target>Действия</target>
+            </trans-unit>
+
+            <trans-unit id="Publication List">
+                <source>Publication List</source>
+                <target>Список публикаций</target>
+            </trans-unit>
+
+            <trans-unit id="Publication Delete">
+                <source>Publication Delete</source>
+                <target>Удалить публикацию</target>
+            </trans-unit>
+
+            <trans-unit id="fp.label.admin.publications">
+                <source>fp.label.admin.publications</source>
+                <target>Публикации</target>
+            </trans-unit>
+
+            <trans-unit id="fp.label.admin.publication.tab_main">
+                <source>fp.label.admin.publication.tab_main</source>
+                <target>Основное</target>
+            </trans-unit>
+
+            <trans-unit id="fp.label.admin.publication.type">
+                <source>fp.label.admin.publication.type</source>
+                <target>Тип</target>
+            </trans-unit>
+
+            <trans-unit id="fp.label.admin.publication.title">
+                <source>fp.label.admin.publication.title</source>
+                <target>Заголовок</target>
+            </trans-unit>
+
+            <trans-unit id="fp.label.admin.publication.content">
+                <source>fp.label.admin.publication.content</source>
+                <target>Текст публикации</target>
+            </trans-unit>
+
+            <trans-unit id="fp.label.admin.publication.is_published">
+                <source>fp.label.admin.publication.is_published</source>
+                <target>Опубликовано</target>
+            </trans-unit>
+
+            <trans-unit id="fp.label.admin.publication.tab_image">
+                <source>fp.label.admin.publication.tab_image</source>
+                <target>Изображение</target>
+            </trans-unit>
+
+            <trans-unit id="fp.label.admin.publication.image">
+                <source>fp.label.admin.publication.image</source>
+                <target>Изображение</target>
+            </trans-unit>
+
+            <trans-unit id="fp.label.admin.publication.tab_additional">
+                <source>fp.label.admin.publication.tab_additional</source>
+                <target>Дополнительно</target>
+            </trans-unit>
+
+            <trans-unit id="fp.label.admin.publication.slug">
+                <source>fp.label.admin.publication.slug</source>
+                <target>Алиас</target>
+            </trans-unit>
+
+            <trans-unit id="fp.label.admin.publication.announcement">
+                <source>fp.label.admin.publication.announcement</source>
+                <target>Анонс</target>
+            </trans-unit>
+
+            <trans-unit id="fp.label.admin.publication.created_at">
+                <source>fp.label.admin.publication.created_at</source>
+                <target>Создано</target>
+            </trans-unit>
+
+            <trans-unit id="fp.label.admin.publication.updated_at">
+                <source>fp.label.admin.publication.updated_at</source>
+                <target>Изменено</target>
+            </trans-unit>
+
+            <trans-unit id="fp.label.admin.hint.slug">
+                <source>fp.label.admin.hint.slug</source>
+                <target>Уникальный цифро-буквенный идентификатор публикации. Оставьте пустым, чтобы он сгенерировался автоматически на основании заголовка.</target>
+            </trans-unit>
+
+            <trans-unit id="fp.label.admin.hint.announcement">
+                <source>fp.label.admin.hint.announcement</source>
+                <target>Краткий (одно-два предложения) текст, при необходимости отображающийся на сводной странице публикаций после ее заголовка</target>
+            </trans-unit>
+
+            <trans-unit id="fp.label.admin.publication_types">
+                <source>fp.label.admin.publication_types</source>
+                <target>Типы публикаций</target>
+            </trans-unit>
+
+            <trans-unit id="Publication Type List">
+                <source>Publication Type List</source>
+                <target>Список типов</target>
+            </trans-unit>
+
+            <trans-unit id="fp.label.admin.publication_type.key">
+                <source>fp.label.admin.publication_type.key</source>
+                <target>Идентификатор</target>
+            </trans-unit>
+
+            <trans-unit id="fp.label.admin.publication_type.title">
+                <source>fp.label.admin.publication_type.title</source>
+                <target>Название</target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

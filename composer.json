@@ -1,0 +1,26 @@
+{
+    "name": "it-blaster/publications-bundle",
+    "description": "Simple management for simple publications (news, offers, blog posts, etc.)",
+    "keywords": ["symfony", "propel", "news", "blog"],
+    "homepage": "https://github.com/it-blaster/publications-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Yaroslav Gashuk",
+            "email": "fenrizbes@yandex.ru"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2",
+        "symfony/framework-bundle": "~2.1",
+        "it-blaster/crop-bundle": "1.0.*",
+        "propel/propel-bundle": "1.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Fenrizbes\\PublicationsBundle": ""
+        }
+    },
+    "minimum-stability": "dev",
+    "target-dir": "Fenrizbes/PublicationsBundle"
+}

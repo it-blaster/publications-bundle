@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="">
+        <body>
+
+            <trans-unit id="fp.constraint.longer_than_255">
+                <source>fp.constraint.longer_than_255</source>
+                <target>Максимальная длина - 255 символов</target>
+            </trans-unit>
+
+            <trans-unit id="fp.constraint.not_alphanumeric">
+                <source>fp.constraint.not_alphanumeric</source>
+                <target>Допустимы только цифры, латинские символы, тире и нижнее подчеркивание</target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

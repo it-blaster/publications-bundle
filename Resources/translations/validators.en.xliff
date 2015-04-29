@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="">
+        <body>
+
+            <trans-unit id="fp.constraint.longer_than_255">
+                <source>fp.constraint.longer_than_255</source>
+                <target>The maximum length is 255 symbols</target>
+            </trans-unit>
+
+            <trans-unit id="fp.constraint.admin.not_alphanumeric">
+                <source>fp.constraint.admin.not_alphanumeric</source>
+                <target>Only digits, Latin characters, underscores and dashes are allowed</target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

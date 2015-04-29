@@ -1,0 +1,3 @@
+services:
+    fenrizbes.publications:
+        class: Fenrizbes\PublicationsBundle\Service\PublicationsService
