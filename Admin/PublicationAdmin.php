@@ -142,8 +142,8 @@ class PublicationAdmin extends Admin
                     ->add('CroppableImage', 'croppable', array(
                         'translation_domain' => $this->getTranslationDomain(),
                         'label'              => 'fp.label.admin.publication.image',
-                        'width'              => 400,
-                        'height'             => 400
+                        'width'              => 140,
+                        'height'             => 95
                     ))
                 ->end()
             ->end()

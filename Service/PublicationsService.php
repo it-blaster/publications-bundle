@@ -8,16 +8,19 @@ use Fenrizbes\PublicationsBundle\Model\PublicationQuery;
 class PublicationsService
 {
     /**
-     * Returns a publication by it's ID
+     * Returns a piece of news by its slug
      *
-     * @param int $id
-     * @return Publication|null
+     * @param $slug
+     * @param null $type_key
+     * @param null $criteria
+     * @return Publication
      */
-    public function findOne($id)
+    public function findOne($slug, $type_key = null, $criteria = null)
     {
-        return PublicationQuery::create()
-            ->applyBaseFilter()
-            ->findPk((int)$id)
+        return PublicationQuery::create(null, $criteria)
+            ->applyBaseFilter($type_key)
+            ->filterBySlug($slug)
+            ->findOne()
         ;
     }
 
@@ -27,15 +30,14 @@ class PublicationsService
      * @param string|null $type_key
      * @param int $limit
      * @param int $page
-     * @param array $filters
      * @param string $sort_order
+     * @param null $criteria
      * @return \PropelModelPager
      */
-    public function find($type_key = null, $limit = 10, $page = 1, $filters = array(), $sort_order = \Criteria::DESC)
+    public function find($type_key = null, $limit = 10, $page = 1, $sort_order = \Criteria::DESC, $criteria = null)
     {
-        return PublicationQuery::create()
+        return PublicationQuery::create(null, $criteria)
             ->applyBaseFilter($type_key)
-            ->applyFilters($filters)
             ->applySorting($sort_order)
             ->paginate($page, $limit)
         ;
@@ -46,11 +48,12 @@ class PublicationsService
      *
      * @param string|null $type_key
      * @param int $limit
+     * @param null $criteria
      * @return \PropelObjectCollection|Publication|null
      */
-    public function getRandom($type_key = null, $limit = 1)
+    public function getRandom($type_key = null, $limit = 1, $criteria = null)
     {
-        return PublicationQuery::create()
+        return PublicationQuery::create(null, $criteria)
             ->applyBaseFilter($type_key)
             ->sortRandomly()
             ->findWithLimit($limit)
@@ -62,11 +65,12 @@ class PublicationsService
      *
      * @param Publication $current
      * @param int $limit
+     * @param null $criteria
      * @return \PropelObjectCollection|Publication|null
      */
-    public function getNext(Publication $current, $limit = 1)
+    public function getNext(Publication $current, $limit = 1, $criteria = null)
     {
-        return $this->getSiblings($current, $limit, \Criteria::GREATER_THAN);
+        return $this->getSiblings($current, $limit, \Criteria::GREATER_THAN, $criteria);
     }
 
     /**
@@ -74,11 +78,12 @@ class PublicationsService
      *
      * @param Publication $current
      * @param int $limit
+     * @param null $criteria
      * @return \PropelObjectCollection|Publication|null
      */
-    public function getPrevious(Publication $current, $limit = 1)
+    public function getPrevious(Publication $current, $limit = 1, $criteria = null)
     {
-        return $this->getSiblings($current, $limit, \Criteria::LESS_THAN);
+        return $this->getSiblings($current, $limit, \Criteria::LESS_THAN, $criteria);
     }
 
     /**
@@ -87,11 +92,12 @@ class PublicationsService
      * @param Publication $current
      * @param int $limit
      * @param string $comparison
+     * @param null $criteria
      * @return \PropelObjectCollection|Publication|null
      */
-    protected function getSiblings(Publication $current, $limit, $comparison)
+    protected function getSiblings(Publication $current, $limit, $comparison, $criteria = null)
     {
-        return PublicationQuery::create()
+        return PublicationQuery::create(null, $criteria)
             ->applyBaseFilter($current->getPublicationTypeKey())
             ->filterByCreatedAt($current->getCreatedAt(), $comparison)
             ->applySorting($comparison == \Criteria::GREATER_THAN ? \Criteria::ASC : \Criteria::DESC)

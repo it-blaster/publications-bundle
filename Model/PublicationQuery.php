@@ -53,7 +53,7 @@ class PublicationQuery extends BasePublicationQuery
      * Applies the limitation and returns a publication or a collection of publications
      *
      * @param $limit
-     * @return \PropelObjectCollection|Publication|null
+     * @return array|mixed|\PropelObjectCollection|Publication
      */
     public function findWithLimit($limit)
     {
@@ -67,28 +67,6 @@ class PublicationQuery extends BasePublicationQuery
     }
 
     /**
-     * Applies any existed filters
-     *
-     * @param array $filters
-     * @return PublicationQuery
-     * @throws \Exception
-     */
-    public function applyFilters(array $filters)
-    {
-        foreach ($filters as $name => $value) {
-            $method = Container::camelize('filterBy'. $name);
-
-            if (!method_exists($this, $method)) {
-                throw new \Exception("Method '". $method ."' not found");
-            }
-
-            $this->$method($value);
-        }
-
-        return $this;
-    }
-
-    /**
      * Applies the filter by year
      *
      * @param string|int $value
@@ -97,6 +75,10 @@ class PublicationQuery extends BasePublicationQuery
      */
     public function filterByYear($value)
     {
+        if (is_null($value)) {
+            return $this;
+        }
+
         if (!preg_match('/^\d{4}$/', $value)) {
             throw new \Exception('Incorrect year value: '. $value);
         }
@@ -116,6 +98,10 @@ class PublicationQuery extends BasePublicationQuery
      */
     public function filterByMonth($value)
     {
+        if (is_null($value)) {
+            return $this;
+        }
+
         if (!preg_match('/^\d{4}\-\d{2}$/', $value)) {
             throw new \Exception('Incorrect month value: '. $value);
         }
@@ -137,6 +123,10 @@ class PublicationQuery extends BasePublicationQuery
      */
     public function filterByDay($value)
     {
+        if (is_null($value)) {
+            return $this;
+        }
+
         if (!preg_match('/^\d{4}\-\d{2}\-\d{2}$/', $value)) {
             throw new \Exception('Incorrect day value: '. $value);
         }
