@@ -259,4 +259,15 @@ class PublicationAdmin extends Admin
             ))
         ;
     }
+
+    /**
+     * @param Publication $object
+     * @return mixed|void
+     */
+    public function preUpdate($object)
+    {
+        if (is_null($object->getCreatedAt())) {
+            $object->setCreatedAt(new \DateTime());
+        }
+    }
 }
