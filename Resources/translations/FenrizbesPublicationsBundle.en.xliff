@@ -93,9 +93,15 @@
                 <target>A short text (one or tow sentences) that's shown on a summary page after the publication's title</target>
             </trans-unit>
 
+            <trans-unit id="fp.label.admin.hint.created_at">
+                <source>fp.label.admin.hint.created_at</source>
+                <target>Оставьте поле пустым, чтобы проставилась текущая дата</target>
+                <target>The current date will be set automatically if you don't fill up the field.</target>
+            </trans-unit>
+
             <trans-unit id="fp.label.admin.publication_types">
                 <source>fp.label.admin.publication_types</source>
-                <target>Publications types</target>
+                <target>Publications</target>
             </trans-unit>
 
             <trans-unit id="Publication Type List">

@@ -98,14 +98,19 @@
                 <target>Краткий (одно-два предложения) текст, при необходимости отображающийся на сводной странице публикаций после ее заголовка</target>
             </trans-unit>
 
+            <trans-unit id="fp.label.admin.hint.created_at">
+                <source>fp.label.admin.hint.created_at</source>
+                <target>Оставьте поле пустым, чтобы проставилась текущая дата</target>
+            </trans-unit>
+
             <trans-unit id="fp.label.admin.publication_types">
                 <source>fp.label.admin.publication_types</source>
-                <target>Типы публикаций</target>
+                <target>Публикации</target>
             </trans-unit>
 
             <trans-unit id="Publication Type List">
                 <source>Publication Type List</source>
-                <target>Список типов</target>
+                <target>Типы публикаций</target>
             </trans-unit>
 
             <trans-unit id="fp.label.admin.publication_type.key">

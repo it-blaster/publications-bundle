@@ -1,0 +1,7 @@
+{% extends admin.getTemplate('base_list_field') %}
+
+{% block field %}
+    <a href="{{ path('fenrizbes_publication_list', { publication_type_key: object.key }) }}" class="sonata-link-identifier">
+        {{ value }}
+    </a>
+{% endblock %}

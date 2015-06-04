@@ -2,6 +2,11 @@
 
 namespace Fenrizbes\PublicationsBundle\Admin;
 
+use Fenrizbes\PublicationsBundle\Model\Publication;
+use Fenrizbes\PublicationsBundle\Model\PublicationQuery;
+use Fenrizbes\PublicationsBundle\Model\PublicationType;
+use Fenrizbes\PublicationsBundle\Model\PublicationTypeQuery;
+use Knp\Menu\MenuItem;
 use Propel\PropelBundle\Validator\Constraints\UniqueObject;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -12,6 +17,93 @@ use Symfony\Component\Validator\Constraints\Regex;
 
 class PublicationAdmin extends Admin
 {
+    protected $baseRouteName    = 'fenrizbes_publication';
+    protected $baseRoutePattern = '/fenrizbes/publication/{publication_type_key}';
+
+    /**
+     * @var PublicationType
+     */
+    protected $publication_type;
+
+    /**
+     * @return PublicationType
+     */
+    public function getPublicationType()
+    {
+        if (is_null($this->publication_type)) {
+            $this->publication_type = PublicationTypeQuery::create()->findPk(
+                $this->getRequest()->get('publication_type_key')
+            );
+        }
+
+        return $this->publication_type;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function generateUrl($name, array $parameters = array(), $absolute = false)
+    {
+        $parameters = array_merge(array(
+            'publication_type_key' => $this->getPublicationType()->getKey()
+        ), $parameters);
+
+        return parent::generateUrl($name, $parameters, $absolute);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBreadcrumbs($action)
+    {
+        $breadcrumbs = parent::getBreadcrumbs($action);
+
+        $menu = $this->menuFactory->createItem('root');
+        $menu = $menu->addChild(
+            $this->trans($this->getLabelTranslatorStrategy()->getLabel('publication_type_list', 'breadcrumb', 'link')),
+            array('uri' => $this->routeGenerator->generate('fenrizbes_publication_type_list'))
+        );
+
+        array_splice($breadcrumbs, 1, 0, array($menu));
+
+        /** @var MenuItem $banner_list_menu */
+        $banner_list_menu = $breadcrumbs[2];
+        $banner_list_menu->setName(
+            $this->trans($this->getLabelTranslatorStrategy()->getLabel(
+                sprintf('%s_list', $this->getClassnameLabel()), 'breadcrumb', 'link'
+            )) .' "'. $this->getPublicationType()->getTitle() .'"'
+        );
+
+        return $breadcrumbs;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function createQuery($context = 'list')
+    {
+        /** @var PublicationQuery $query */
+        $query = parent::createQuery($context);
+
+        $query->filterByPublicationType($this->getPublicationType());
+
+        return $query;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSubject()
+    {
+        $subject = parent::getSubject();
+
+        if ($subject instanceof Publication) {
+            $subject->setPublicationType($this->getPublicationType());
+        }
+
+        return $subject;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -60,9 +152,6 @@ class PublicationAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('PublicationType', null, array(
-                'label' => 'fp.label.admin.publication.type'
-            ))
             ->add('Title', null, array(
                 'label' => 'fp.label.admin.publication.title'
             ))
@@ -80,9 +169,6 @@ class PublicationAdmin extends Admin
         $listMapper
             ->addIdentifier('Title', null, array(
                 'label' => 'fp.label.admin.publication.title'
-            ))
-            ->add('PublicationType', null, array(
-                'label' => 'fp.label.admin.publication.type'
             ))
             ->add('IsPublished', null, array(
                 'label' => 'fp.label.admin.publication.is_published'
@@ -114,10 +200,6 @@ class PublicationAdmin extends Admin
         $formMapper
             ->tab('fp.label.admin.publication.tab_main')
                 ->with('')
-                    ->add('PublicationType', null, array(
-                        'label'    => 'fp.label.admin.publication.type',
-                        'required' => true
-                    ))
                     ->add('Title', null, array(
                         'label'       => 'fp.label.admin.publication.title',
                         'constraints' => array(
@@ -162,12 +244,18 @@ class PublicationAdmin extends Admin
                     ->add('Announcement', null, array(
                         'label' => 'fp.label.admin.publication.announcement'
                     ))
+                    ->add('CreatedAt', 'datetime_no_intl_picker', array(
+                        'label'    => 'fp.label.admin.publication.created_at',
+                        'format'   => $this->datetime_format,
+                        'required' => false
+                    ))
                 ->end()
             ->end()
 
             ->setHelps(array(
                 'Slug'         => 'fp.label.admin.hint.slug',
-                'Announcement' => 'fp.label.admin.hint.announcement'
+                'Announcement' => 'fp.label.admin.hint.announcement',
+                'CreatedAt'    => 'fp.label.admin.hint.created_at'
             ))
         ;
     }

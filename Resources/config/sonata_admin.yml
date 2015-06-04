@@ -5,16 +5,17 @@ services:
             - ~
             - Fenrizbes\PublicationsBundle\Model\Publication
             - SonataAdminBundle:CRUD
-        tags:
-            -
-                name:         sonata.admin
-                manager_type: propel
-                group:        %fp.sonata_admin.group_label%
-                label:        fp.label.admin.publications
         calls:
             - [ setTranslationDomain, [ FenrizbesPublicationsBundle ] ]
             - [ setDateTimeFormat,    [ %fp.datetime_format% ] ]
             - [ setContentEditor,     [ %fp.sonata_admin.content_editor% ] ]
+        tags:
+            -
+                name:              sonata.admin
+                manager_type:      propel
+                group:             %fp.sonata_admin.group_label%
+                label:             fp.label.admin.publications
+                show_in_dashboard: false
 
     fenrizbes_publications.admin.publication_type:
         class: Fenrizbes\PublicationsBundle\Admin\PublicationTypeAdmin
@@ -22,11 +23,11 @@ services:
             - ~
             - Fenrizbes\PublicationsBundle\Model\PublicationType
             - SonataAdminBundle:CRUD
+        calls:
+            - [ setTranslationDomain, [ FenrizbesPublicationsBundle ] ]
         tags:
             -
                 name:         sonata.admin
                 manager_type: propel
                 group:        %fp.sonata_admin.group_label%
                 label:        fp.label.admin.publication_types
-        calls:
-            - [ setTranslationDomain, [ FenrizbesPublicationsBundle ] ]

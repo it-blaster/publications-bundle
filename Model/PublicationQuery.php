@@ -17,6 +17,7 @@ class PublicationQuery extends BasePublicationQuery
     {
         return $this
             ->filterByIsPublished(true)
+            ->filterByCreatedAt(new \DateTime(), \Criteria::LESS_EQUAL)
 
             ->_if(!is_null($type_key))
                 ->filterByPublicationTypeKey($type_key)
