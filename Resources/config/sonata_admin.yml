@@ -1,6 +1,9 @@
+parameters:
+    sonata.publication.admin.class: Fenrizbes\PublicationsBundle\Admin\PublicationAdmin
+
 services:
     fenrizbes_publications.admin.publication:
-        class: Fenrizbes\PublicationsBundle\Admin\PublicationAdmin
+        class: %sonata.publication.admin.class%
         arguments:
             - ~
             - Fenrizbes\PublicationsBundle\Model\Publication
